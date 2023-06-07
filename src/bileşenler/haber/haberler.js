@@ -90,28 +90,72 @@ const data = [
   }
 ];
 
-/*
-  Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
-  Bileşeniniz, argümanı haberleri içeren dizi olarak alan bir fonksiyon olacak,
-  ve aşağıdaki gibi görünen bir DOM düğümü döndürecek:
 
-  <div class="article">
-    <h2>{haber başlığı}</h2>
-    <p class="tarih">{haber tarihi}</p>
+// Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
+//Bileşeniniz, argümanı haberleri içeren dizi olarak alan bir fonksiyon olacak,
+//ve aşağıdaki gibi görünen bir DOM düğümü döndürecek:
 
-    {üç ayrı paragraf elementi}
 
-    <span class="expandButton">+</span>
-  </div>
 
-  Adım 2: Hala `haberYapici` içindeyiz, span.expandButton 'a bir click event dinleyici ekleyin.
-  Bu dinleyici div.article öğesine 'article-open' class'ını ekleyip/çıkaracak (toogle).
 
-  Adım 3: Fonksiyonunuzdan bir öğe döndürmeyi unutmayın.
 
-  Adım 4: Fonksiyonunuzun dışında, tüm datayı döngüye sokun(loop). Bir div.article öğesi oluşturmak ve bunu div.articles içindeki DOM'a eklemek için
-  her yinelemede oluşturduğunuz bileşeninizi kullanacaksınız(bknz. index.html).
 
-  Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
-  Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
-*/
+//Adım 2:   Hala `haberYapici` içindeyiz, span.expandButton 'a bir click event dinleyici ekleyin.
+// Bu dinleyici div.article öğesine 'article-open' class'ını ekleyip/çıkaracak (toogle).
+
+
+
+//Adım 3: Fonksiyonunuzdan bir öğe döndürmeyi unutmayın.
+
+//Adım 4: Fonksiyonunuzun dışında, tüm datayı döngüye sokun(loop). Bir div.article öğesi oluşturmak ve bunu div.articles içindeki DOM'a eklemek için
+//her yinelemede oluşturduğunuz bileşeninizi kullanacaksınız(bknz. index.html).
+
+
+//   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
+//Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
+
+
+
+function haberYapici(news) {
+  const haberBox = document.createElement("div");
+  haberBox.classList.add("article");
+
+  const haberBaslik = document.createElement("h2");
+  haberBaslik.textContent = news.baslik;
+  haberBox.appendChild(haberBaslik);
+
+  const haberTarih = document.createElement("p");
+  haberTarih.classList.add("tarih");
+  haberTarih.textContent = news.tarih;
+  haberBox.appendChild(haberTarih);
+
+  const haberParag1 = document.createElement("p");
+  haberParag1.textContent = news.ilkParagraf;
+  haberBox.appendChild(haberParag1);
+
+  const haberParag2 = document.createElement("p");
+  haberParag2.textContent = news.ikinciParagraf;
+  haberBox.appendChild(haberParag2);
+
+  const haberParag3 = document.createElement("p");
+  haberParag3.textContent = news.ucuncuParagraf;
+  haberBox.appendChild(haberParag3);
+
+  const spanButton = document.createElement("span");
+  spanButton.classList.add("expandButton");
+  spanButton.textContent = "+";
+  haberBox.appendChild(spanButton);
+
+
+  spanButton.addEventListener("click", (event) => {
+    haberBox.classList.toggle("article-open");
+  });
+
+   return haberBox;
+}
+
+const containers = document.querySelector(".articles");
+
+data.map((item) => {
+  containers.appendChild(haberYapici(item));
+});
