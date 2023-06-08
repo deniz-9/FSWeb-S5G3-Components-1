@@ -116,46 +116,49 @@ const data = [
 
 
 
-function haberYapici(news) {
-  const haberBox = document.createElement("div");
-  haberBox.classList.add("article");
+
+
+function haberYapici(haber) {
+  const haberContainer = document.createElement("div");
+  haberContainer.classList.add("article");
 
   const haberBaslik = document.createElement("h2");
-  haberBaslik.textContent = news.baslik;
-  haberBox.appendChild(haberBaslik);
+  haberBaslik.textContent = haber.baslik;
+  haberContainer.appendChild(haberBaslik);
 
-  const haberTarih = document.createElement("p");
-  haberTarih.classList.add("tarih");
-  haberTarih.textContent = news.tarih;
-  haberBox.appendChild(haberTarih);
+  const haberDate = document.createElement("p");
+  haberDate.classList.add("tarih");
+  haberDate.textContent = haber.tarih;
+  haberContainer.appendChild(haberDate);
 
-  const haberParag1 = document.createElement("p");
-  haberParag1.textContent = news.ilkParagraf;
-  haberBox.appendChild(haberParag1);
+  const Paragraf1 = document.createElement("p");
+  Paragraf1.textContent = haber.ilkParagraf;
+  haberContainer.appendChild(Paragraf1);
 
-  const haberParag2 = document.createElement("p");
-  haberParag2.textContent = news.ikinciParagraf;
-  haberBox.appendChild(haberParag2);
+  const Paragraf2 = document.createElement("p");
+  Paragraf2.textContent = haber.ikinciParagraf;
+  haberContainer.appendChild(Paragraf2);
 
-  const haberParag3 = document.createElement("p");
-  haberParag3.textContent = news.ucuncuParagraf;
-  haberBox.appendChild(haberParag3);
+  const Paragraf3 = document.createElement("p");
+  Paragraf3.textContent = haber.ucuncuParagraf;
+  haberContainer.appendChild(Paragraf3);
 
   const spanButton = document.createElement("span");
   spanButton.classList.add("expandButton");
   spanButton.textContent = "+";
-  haberBox.appendChild(spanButton);
-
-
+ 
+ 
+  haberContainer.appendChild(spanButton);
   spanButton.addEventListener("click", (event) => {
-    haberBox.classList.toggle("article-open");
+    haberContainer.classList.toggle("article-open");
   });
 
-   return haberBox;
+  return haberContainer;
 }
 
 const containers = document.querySelector(".articles");
 
-data.map((item) => {
-  containers.appendChild(haberYapici(item));
+data.map((news) => {
+containers.appendChild(haberYapici(news));
 });
+
