@@ -51,7 +51,7 @@ function menuYapici(menuItems) {
     ulBox.appendChild(liBox);
     liBox.textContent = item;
   });
-
+ // forEach ile de oluşturabilir.
   menuBox.appendChild(ulBox);
 
   const menuDugme = document.querySelector(".menu-button");

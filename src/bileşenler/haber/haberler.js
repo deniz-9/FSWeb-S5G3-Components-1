@@ -143,13 +143,13 @@ function haberYapici(haber) {
   Paragraf3.textContent = haber.ucuncuParagraf;
   haberContainer.appendChild(Paragraf3);
 
-  const spanButton = document.createElement("span");
+  const spanButton = document.createElement("button");
   spanButton.classList.add("expandButton");
   spanButton.textContent = "+";
- 
- 
+
+
   haberContainer.appendChild(spanButton);
-  spanButton.addEventListener("click", (event) => {
+  spanButton.addEventListener("click", () => {
     haberContainer.classList.toggle("article-open");
   });
 
@@ -159,6 +159,10 @@ function haberYapici(haber) {
 const containers = document.querySelector(".articles");
 
 data.map((news) => {
-containers.appendChild(haberYapici(news));
+  containers.appendChild(haberYapici(news));
 });
 
+// 2.yol   forEarch burada daha kullanışlı iterate açısından
+// data.forEach((news) => {
+//   containers.appendChild(haberYapici(news));
+//   });
